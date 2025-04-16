@@ -31,7 +31,8 @@ on:
 jobs:
   prepare-contracts:
     name: Prepare contracts
-    runs-on: matterlabs-ci-runner-high-performance
+    # runs-on: matterlabs-ci-runner-high-performance
+    runs-on: revolution-runner
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -154,7 +155,8 @@ jobs:
     needs: prepare-contracts
     env:
       IMAGE_TAG_SUFFIX: ${{ inputs.image_tag_suffix }}${{ (inputs.en_alpha_release && matrix.components == 'external-node') && '-alpha' || '' }}
-    runs-on: ${{ fromJSON('["matterlabs-ci-runner-high-performance", "matterlabs-ci-runner-arm"]')[contains(matrix.platforms, 'arm')] }}
+    # runs-on: ${{ fromJSON('["matterlabs-ci-runner-high-performance", "matterlabs-ci-runner-arm"]')[contains(matrix.platforms, 'arm')] }}
+    runs-on: revolution-runner
     permissions:
       packages: write
       contents: read
@@ -254,7 +256,8 @@ jobs:
 
   create_manifest:
     name: Create release manifest
-    runs-on: matterlabs-ci-runner
+    # runs-on: matterlabs-ci-runner
+    runs-on: revolution-runner
     needs: build-images
     if: ${{ inputs.action == 'push' }}
     strategy:
