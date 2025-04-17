@@ -164,8 +164,8 @@ jobs:
       matrix:
         components:
           - server-v2
-          - external-node
-          - snapshots-creator
+          # - external-node
+          # - snapshots-creator
         platforms:
           - linux/amd64
         include:
@@ -265,10 +265,10 @@ jobs:
         component:
           - name: server-v2
             platform: linux/amd64
-          - name: external-node
-            platform: linux/amd64,linux/arm64
-          - name: snapshots-creator
-            platform: linux/amd64
+          # - name: external-node
+          #   platform: linux/amd64,linux/arm64
+          # - name: snapshots-creator
+          #   platform: linux/amd64
 
     env:
       IMAGE_TAG_SUFFIX: ${{ inputs.image_tag_suffix }}${{ (inputs.en_alpha_release && matrix.component.name == 'external-node') && '-alpha' || '' }}
