@@ -237,12 +237,11 @@ jobs:
           load: true
           platforms: ${{ matrix.platforms }}
           file: docker/${{ matrix.components }}/Dockerfile
-          build-args: |
-            SCCACHE_GCS_BUCKET=matterlabs-infra-sccache-storage
-            SCCACHE_GCS_SERVICE_ACCOUNT=gha-ci-runners@matterlabs-infra.iam.gserviceaccount.com
-            SCCACHE_GCS_RW_MODE=READ_WRITE
-            # RUSTC_WRAPPER=sccache
-            RUSTC_WRAPPER=""
+          # build-args: |
+          #   SCCACHE_GCS_BUCKET=matterlabs-infra-sccache-storage
+          #   SCCACHE_GCS_SERVICE_ACCOUNT=gha-ci-runners@matterlabs-infra.iam.gserviceaccount.com
+          #   SCCACHE_GCS_RW_MODE=READ_WRITE
+          #   RUSTC_WRAPPER=sccache
           tags: |            
             us-docker.pkg.dev/matterlabs-infra/matterlabs-docker/${{ matrix.components }}:${{ env.IMAGE_TAG_SHA_TS }}-${{ env.PLATFORM }}
             ghcr.io/${{ github.repository_owner }}/${{ matrix.components }}:${{ env.IMAGE_TAG_SHA_TS }}-${{ env.PLATFORM }}
